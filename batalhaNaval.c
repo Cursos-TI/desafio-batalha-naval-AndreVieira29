@@ -36,5 +36,67 @@ int main() {
     // 1 1 1 1 1
     // 0 0 1 0 0
 
-    return 0;
+
+char  linha[10] ={'A','B','C','D','E','F','G','H','I','j'};
+int tabuleiro[10][10];
+int index, i, j;
+
+printf("  "); //espaço para ajusta o cabeçalho de letras com as Colunas
+
+for( index = 0 ; index < 10; index++){ // imprimi o vetor com as letras para identificar as colunas
+    printf("%2c",linha[index]);
 }
+  printf("\n");
+
+  //preenche posicões do vetor com o numero "0"
+for (i=0; i < 10 ;i++){
+  for(j = 0; j < 10 ;j++){
+    tabuleiro[i][j] = 0;
+    }
+  }
+    
+ //posição barco barco Horizontal
+for(int j = 2; j < 5;j++){
+  if (j >= 0 && j < 10 && tabuleiro[9][j] == 0) { 
+    tabuleiro[9][j]=3;
+    }
+  }
+   
+  //posiçção barco vertical
+for (int i = 0; i < 3; i++) {
+    if (i >= 0 && i < 10 && tabuleiro[i][5] == 0) { 
+        tabuleiro[i][5] = 3; 
+    }
+}
+
+ //posiçção barco diagonal esquerda
+for (int i = 0; i < 3; i++ ){
+  if (i >= 0 && i < 10 && tabuleiro[i][i] == 0) { 
+    tabuleiro[i][i] =3;
+  } 
+}
+//posiçção barco diagonal esquerda
+    for (int i = 0; i < 3; i++) {
+    int j = 9 - i; // Ajuste correto para uma matriz 10x10
+     if (i >= 0 && i < 10 && j >= 0 && j < 10 && tabuleiro[i][j] == 0) { 
+         tabuleiro[i][j] = 3;
+         }
+    }
+
+// imprime tabuleiro completo
+    for (i=0; i< 10 ;i++){
+    printf("%2d ",i + 1); // imprimi o numero das linhas dos Tabuleiro
+    for(j=0; j< 10 ;j++){
+      
+       printf("%d ", tabuleiro[i][j]);
+    
+    }
+    
+    printf("\n");
+ }
+
+    return 0;
+
+
+}
+
