@@ -1,102 +1,77 @@
 #include <stdio.h>
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+#define Linha 10
+#define Coluna 10
+
+void especialCone(int tabuleiro[Linha][Coluna]) {
+    for (int linha = 0; linha < Linha; linha++) {
+        for (int coluna = 0; coluna < Coluna; coluna++) {
+            if (linha == 0 && coluna == 5) tabuleiro[linha][coluna] = 3;
+            if (linha == 1 && coluna >= 4 && coluna <= 6) tabuleiro[linha][coluna] = 3;
+            if (linha == 2 && coluna >= 3 && coluna <= 7) tabuleiro[linha][coluna] = 3;
+        }
+    }
+}
 
 int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+    char LetrasColuna[10] = {'A','B','C','D','E','F','G','H','I','J'}; 
+    int tabuleiro[Linha][Coluna];
+    int index, linha, coluna;
 
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
-
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
-
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
-
-
-char  linha[10] ={'A','B','C','D','E','F','G','H','I','j'};
-int tabuleiro[10][10];
-int index, i, j;
-
-printf("  "); //espaço para ajusta o cabeçalho de letras com as Colunas
-
-for( index = 0 ; index < 10; index++){ // imprimi o vetor com as letras para identificar as colunas
-    printf("%2c",linha[index]);
-}
-  printf("\n");
-
-  //preenche posicões do vetor com o numero "0"
-for (i=0; i < 10 ;i++){
-  for(j = 0; j < 10 ;j++){
-    tabuleiro[i][j] = 0;
+    printf("  "); // Espaço para ajustar o cabeçalho de letras com as colunas
+    for (index = 0; index < 10; index++) { 
+        printf("%2c", LetrasColuna[index]); // Imprime as letras das colunas
     }
-  }
-    
- //posição barco barco Horizontal
-for(int j = 2; j < 5;j++){
-  if (j >= 0 && j < 10 && tabuleiro[9][j] == 0) { 
-    tabuleiro[9][j]=3;
-    }
-  }
-   
-  //posiçção barco vertical
-for (int i = 0; i < 3; i++) {
-    if (i >= 0 && i < 10 && tabuleiro[i][5] == 0) { 
-        tabuleiro[i][5] = 3; 
-    }
-}
-
- //posiçção barco diagonal esquerda
-for (int i = 0; i < 3; i++ ){
-  if (i >= 0 && i < 10 && tabuleiro[i][i] == 0) { 
-    tabuleiro[i][i] =3;
-  } 
-}
-//posiçção barco diagonal esquerda
-    for (int i = 0; i < 3; i++) {
-    int j = 9 - i; // Ajuste correto para uma matriz 10x10
-     if (i >= 0 && i < 10 && j >= 0 && j < 10 && tabuleiro[i][j] == 0) { 
-         tabuleiro[i][j] = 3;
-         }
-    }
-
-// imprime tabuleiro completo
-    for (i=0; i< 10 ;i++){
-    printf("%2d ",i + 1); // imprimi o numero das linhas dos Tabuleiro
-    for(j=0; j< 10 ;j++){
-      
-       printf("%d ", tabuleiro[i][j]);
-    
-    }
-    
     printf("\n");
- }
+
+    // Preenche as posições do vetor com o número "0"
+    for (linha = 0; linha < Linha; linha++) {
+        for (coluna = 0; coluna < Coluna; coluna++) {
+            tabuleiro[linha][coluna] = 0;
+        }
+    }
+
+    // Chama a função especialCone para alterar algumas posições
+    //especialCone(tabuleiro);
+
+    // Posição do barco horizontal
+    for (coluna = 2; coluna < 5; coluna++) {
+        if (tabuleiro[9][coluna] == 0) { 
+            tabuleiro[9][coluna] = 3;
+        }
+    }
+   
+    // Posição do barco vertical
+    for (linha = 5; linha < 8; linha++) {
+        if (tabuleiro[linha][5] == 0) { 
+            tabuleiro[linha][5] = 3;
+        }
+    }
+
+    // Posição do barco diagonal esquerda
+    for (linha = 0; linha < 3; linha++) {
+        if (tabuleiro[linha][linha] == 0) { 
+            tabuleiro[linha][linha] = 3;
+        }
+    }
+
+    // Posição do barco diagonal direita
+    for (linha = 0; linha < 3; linha++) {
+        int coluna = 9 - linha; // Ajuste correto para a diagonal direita
+        if (tabuleiro[linha][coluna] == 0) { 
+            tabuleiro[linha][coluna] = 3;
+        }
+    }
+
+    // Imprime o tabuleiro completo
+    for (linha = 0; linha < Linha; linha++) {
+        printf("%2d ", linha + 1); // Imprime o número das linhas do tabuleiro
+        for (coluna = 0; coluna < Coluna; coluna++) {
+            printf("%d ", tabuleiro[linha][coluna]);
+        }
+        printf("\n");
+    }
 
     return 0;
-
-
 }
-
