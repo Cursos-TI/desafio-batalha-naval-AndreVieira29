@@ -6,16 +6,25 @@
 void especialCone(int tabuleiro[Linha][Coluna]) {
     for (int linha = 0; linha < Linha; linha++) {
         for (int coluna = 0; coluna < Coluna; coluna++) {
-            if (linha == 0 && coluna == 5) tabuleiro[linha][coluna] = 3;
-            if (linha == 1 && coluna >= 4 && coluna <= 6) tabuleiro[linha][coluna] = 3;
-            if (linha == 2 && coluna >= 3 && coluna <= 7) tabuleiro[linha][coluna] = 3;
+            if (linha == 0 && coluna == 5) tabuleiro[linha][coluna] = 5;
+            if (linha == 1 && coluna >= 4 && coluna <= 6) tabuleiro[linha][coluna] = 5;
+            if (linha == 2 && coluna >= 3 && coluna <= 7) tabuleiro[linha][coluna] = 5;
         }
+    }
+}
+
+void especialCruz(int tabuleiro[Linha][Coluna]) {
+    for (int j = 0; j <= 4; j++) {
+        tabuleiro[7][j] = 5;
+    }
+    for (int i = 5; i <= 9; i++) {
+        tabuleiro[i][2] = 5;
     }
 }
 
 int main() {
 
-    char LetrasColuna[10] = {'A','B','C','D','E','F','G','H','I','J'}; 
+    char LetrasColuna[10] = {'A','B','C','D','E','F','G','H','I','J'}; // vetor para criar o indice das colunas
     int tabuleiro[Linha][Coluna];
     int index, linha, coluna;
 
@@ -31,9 +40,6 @@ int main() {
             tabuleiro[linha][coluna] = 0;
         }
     }
-
-    // Chama a função especialCone para alterar algumas posições
-    //especialCone(tabuleiro);
 
     // Posição do barco horizontal
     for (coluna = 2; coluna < 5; coluna++) {
@@ -63,6 +69,9 @@ int main() {
             tabuleiro[linha][coluna] = 3;
         }
     }
+
+    especialCone(tabuleiro);
+    especialCruz(tabuleiro);
 
     // Imprime o tabuleiro completo
     for (linha = 0; linha < Linha; linha++) {
