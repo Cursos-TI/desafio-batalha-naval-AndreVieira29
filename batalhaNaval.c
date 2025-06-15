@@ -3,6 +3,7 @@
 #define Linha 10
 #define Coluna 10
 
+//altera valores na Matriz para numero 5 pra simular desenho de um Cone 
 void especialCone(int tabuleiro[Linha][Coluna]) {
     for (int linha = 0; linha < Linha; linha++) {
         for (int coluna = 0; coluna < Coluna; coluna++) {
@@ -12,13 +13,22 @@ void especialCone(int tabuleiro[Linha][Coluna]) {
         }
     }
 }
-
+//altera valores na Matriz para numero 5 para simular desenho de uma Cruz 
 void especialCruz(int tabuleiro[Linha][Coluna]) {
-    for (int j = 0; j <= 4; j++) {
+    for (int j = 0; j <= 4; j++) { 
         tabuleiro[7][j] = 5;
     }
-    for (int i = 5; i <= 9; i++) {
+    for (int i = 5; i <= 9; i++) { 
         tabuleiro[i][2] = 5;
+    }
+}
+void especialOcto(int tabuleiro[Linha][Coluna]){
+     for (int i = 4; i <= 7; i++) {
+        for (int j = 0; j <= 8; j++) {
+            if ((i >= 4 && i <= 6 && j == 7) || (i == 5 && j >= 6 && j <= 8)) {
+                tabuleiro[i][j] = 5; 
+            }
+        }
     }
 }
 
@@ -34,35 +44,35 @@ int main() {
     }
     printf("\n");
 
-    // Preenche as posições do vetor com o número "0"
+    // Preenche o vetor/matriz com o número "0"
     for (linha = 0; linha < Linha; linha++) {
         for (coluna = 0; coluna < Coluna; coluna++) {
             tabuleiro[linha][coluna] = 0;
         }
     }
 
-    // Posição do barco horizontal
+    // altera valores na Matriz para o numero 3 para silumar o desenho de um barco horizontal
     for (coluna = 2; coluna < 5; coluna++) {
         if (tabuleiro[9][coluna] == 0) { 
             tabuleiro[9][coluna] = 3;
         }
     }
    
-    // Posição do barco vertical
+    // altera valores na Matriz para o numero 3 silumar o desenho de um barco vertical
     for (linha = 5; linha < 8; linha++) {
         if (tabuleiro[linha][5] == 0) { 
             tabuleiro[linha][5] = 3;
         }
     }
 
-    // Posição do barco diagonal esquerda
+    // altera valores na Matriz para numero 3 silumar o desenho de um barco diagonal esquerda
     for (linha = 0; linha < 3; linha++) {
         if (tabuleiro[linha][linha] == 0) { 
             tabuleiro[linha][linha] = 3;
         }
     }
 
-    // Posição do barco diagonal direita
+    // altera valores na Matriz para numero 3 silumar o desenho de um barco diagonal direita
     for (linha = 0; linha < 3; linha++) {
         int coluna = 9 - linha; 
         if (tabuleiro[linha][coluna] == 0) { 
@@ -72,8 +82,9 @@ int main() {
 
     especialCone(tabuleiro);
     especialCruz(tabuleiro);
+    especialOcto(tabuleiro);
 
-    // Imprime o tabuleiro completo
+    // Imprime o tabuleiro completo 
     for (linha = 0; linha < Linha; linha++) {
         printf("%2d ", linha + 1); // Imprime o número das linhas do tabuleiro
         for (coluna = 0; coluna < Coluna; coluna++) {
