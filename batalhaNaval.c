@@ -64,7 +64,7 @@ int main() {
 
     // Posição do barco diagonal direita
     for (linha = 0; linha < 3; linha++) {
-        int coluna = 9 - linha; // Ajuste correto para a diagonal direita
+        int coluna = 9 - linha; 
         if (tabuleiro[linha][coluna] == 0) { 
             tabuleiro[linha][coluna] = 3;
         }
